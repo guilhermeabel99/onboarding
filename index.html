@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="no-js" lang="pt-br" ng-app="MailModule">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Onboarding </title>
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.4/angular.min.js"></script>
+    <script src="lib/angularjs/angular-file-upload.js"></script>
+    <script src="lib/ui-utils.min.js"></script>
+    <link rel="stylesheet" href="css/app2.css">
+</head>
+
+<body ng-controller="MainCtrl" id="MainCtrl">
+    <img class="image-logo-wpp" src="./imgs/logoHi-removebg-preview.png">
+    <section role="main">
+        <article role="article">
+            <form ng-if="successMessage == undefined && errorMessage == undefined" role="form"
+                name=" Omni Bot + Omini Pro HiChat" class="col-sm-12 padding-ver-15" novalidate>
+
+                <legend><span class="uppercase more" style="font-weight: 700; font-size: 16px">Vamos iniciar a
+                        configuração do seu Onboarding</span></legend>
+
+                <div class="form-group">
+                    <label class="field-label">Nome da empresa</label>
+                    <input type="text" id="name" name="name" minlength="1" maxlength="50" ng-model="init.nome"
+                        ng-disabled="DISABLE_FIELDS" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="field-label"><span>*</span>E-mail válido</label>
+                    <input type="email" id="email" name="email" ng-model="init.Email" minlength="1" maxlength="50"
+                        ng-disabled="DISABLE_FIELDS" required>
+
+                    <div class="form-group">
+                        <label class="field-label"><span>*</span>Responsável pelo projeto</label>
+                        <input name="projeto" ng-model="init.projeto" minlength="1" maxlength="50" id="projeto"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+                    <div>
+                        <label class="field-label"><span>*</span>Conte-nos sobre seu Robô (HiBot)</label>
+                        <textarea type="text" name="mensagem" id="mensagem" ng-model="init.mensagem"
+                            ng-disabled="DISABLE_FIELDS" maxlength="240" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span>*</span>Qual seu site?</label>
+                        <input name="site" ng-model="init.site" minlength="1" maxlength="50" id="site"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+                    <div class="form-group">
+                        <label><span>Nos informe onde seu HiBot será publicado de acordo com sua
+                                contratação</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Site</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Whatsapp</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Facebook</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label><span>Todos terão acesso ao robô?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Área logada</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Área deslogada</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Ambas as áreas</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Agora sobre INTEGRAÇÕES. Você gostaria de ter
+                                integrações nessa fase inicial do HiBot?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Sim</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Possui API para integração?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Sim</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>A documentação da API já está disponível?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Sim</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Qual funcionalidade/serviço você pensou para seu Bot? Lembrando que na fase de
+                                implantação, são até 2 integrações, se necessário.</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Status de pedido</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">2ª via de boleto</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Nota Fiscal</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Agendamentos</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Rastreamento de Pedidos</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Outros</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Em caso de Outros, descreva a funcionalidade:</label>
+                        <input name="outros" ng-model="init.outros" minlength="1" maxlength="50" id="outros"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Qual o nome e email do responsável técnico da
+                            integração?</label>
+                        <input name="integracao" ng-model="init.integracao" minlength="1" maxlength="50" id="integracao"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Agora sobre HICHAT e demais configurações, qual o nome
+                            do administrador da plataforma?</label>
+                        <input name="hichat" ng-model="init.hichat" minlength="1" maxlength="50" id="hichat"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Escreva abaixo o email do administrador. Este será o
+                            login de usuário de toda a plataforma.</label>
+                        <input name="adm" ng-model="init.adm" minlength="1" maxlength="50" id="adm"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Pesquisa Inicial - Escolha entre as opções de pergunta para o cliente responder
+                                para entrar em atendimento. (Obs: O nome já consta na pesquisa por padrão e sempre será
+                                solicitado ao cliente).</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">E-mail</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Telefone</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Outros</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Seguindo agora para atendimento VISUAL. Informe a cor
+                            primária e a cor secundária da marca que será utilizado (código hexadecimal).</label>
+                        <input name="identidade" ng-model="init.identidade" minlength="1" maxlength="50" id="identidade"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Você deseja utilizar Pesquisa de Satisfação?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Sim</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Horário de Atendimento - Informe o horário de
+                            atendimento da operação. Ex: Seg - Sex 08h00 às 18h00 e Sab 09h00 às 15h00</label>
+                        <input name="atendimento" ng-model="init.atendimento" minlength="1" maxlength="50"
+                            id="atendimento" ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+                    <div class="form-group"></div>
+                    <label class="field-label">Anexe a logo da empresa com dimensões de 80px (A) por 460px (L), em
+                        formato PNG (fundo<br> transparente)</label>
+                    <div class="dt-forms-upload-area e6b9084f-d055-48fc-b284-42fc18a302f4"
+                        style="position: relative;overflow: hidden;direction: ltr;"><span>Enviar
+                            arquivo</span><input qq-button-id="bfe37bc6-39d6-4aae-8e3f-e65cc7fcd264" title="file input"
+                            multiple="" type="file" name="qqfile"
+                            style="position: absolute; right: 0px; top: 0px; font-family: Arial; font-size: 118px; margin: 0px; padding: 0px; cursor: pointer; opacity: 0; height: 100%;">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"> INBOX (Ticket) Configurar o canal Inbox, possibilita que você
+                            conecte
+                            uma conta de email a ferramenta da Hi, e torne seus emaisl em tickets com SLAs e Grupos de
+                            atendimento. Além de poder conectar o Facebook para o recebimento de comentários e mensagens
+                            privadas.</label>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label><span>Você deseja conectar alguma conta de email ao Inbox?</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Sim</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Não</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>SERVIDOR DE HOSPEDAGEM - Host</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">Google - G Suite</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Outlook</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">UOL Host</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">Outros</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Configuração das Contas de Email - Informe a(s) conta(s)
+                            de email que desejam conectar no Inbox</label>
+                        <input name="contas" ng-model="init.contas" minlength="1" maxlength="50" id="contas"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Senha do(s) email(s)</label>
+                        <input name="senha" ng-model="init.senha" minlength="1" maxlength="50" id="senha"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Host de Recebimento - POP (pop.host.com) ou IMAP
+                            (imap.host.com)</label>
+                        <input name="recebimento" ng-model="init.recebimento" minlength="1" maxlength="50"
+                            id="recebimento" ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Porta de Recebimento (Ex: 995 / 993 / 110)</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">993</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">995</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">110</label>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="field-label"><span></span>Servidor de envio</label>
+                        <input name="server" ng-model="init.server" minlength="1" maxlength="50" id="server"
+                            ng-disabled="DISABLE_FIELDS" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label><span>Porta de Envio (SSL / TLS)</span></label>
+                        <div class="forms-options-wrapper-dt">
+                            <div class="dt-forms-options-wrapper-lbl">
+                                <input type="checkbox">
+                                <label class="field-label">587 - SSL</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">465 - SSL</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">25 - SSL</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">587 - TSL</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">465 - TSL</label>
+                            </div>
+
+                            <div class="dt-forms-options-wrapper-lbl-">
+                                <input type="checkbox">
+                                <label class="field-label">25 - TSL</label>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <label class="field-label">SUCESSO! Isso é tudo por enquanto. Iremos te convidar para um kickoff
+                        online com os envolvidos no<br> Projeto e assim darmos continuidade na implantação. Até
+                        logo!</label>
+                    <div class="form-group button-send">
+                        <button type="submit" class="btn btn-primary btn-submit" id="btnSubmit" ng-click="send()"
+                            ng-disabled="form.$invalid">
+                            Enviar
+                        </button>
+                    </div>
+
+                    <div ng-cloak class="row">
+                        <div class="col-xs-12 ">
+                            <p class="alert alert-danger" ng-show="form.nome.$dirty && form.nome.$error.required">
+                                Nome é um campo obrigatório
+                            </p>
+
+                            <p class="alert alert-danger" ng-show="form.email.$dirty && form.email.$error.required">
+                                E-Mail é um campo obrigatório
+                            </p>
+                            <p class="alert alert-danger" ng-show="form.email.$dirty && form.email.$invalid">
+                                O e-mail informado é inválido
+                            </p>
+                            <p class="alert alert-success" ng-show="successMessage">
+                                {{ successMessage }}
+                            </p>
+                            <p class="alert alert-danger" ng-show="errorMessage">
+                                {{ errorMessage }}
+                            </p>
+                        </div>
+                    </div>
+            </form>
+        </article>
+    </section>
+    <img class="image-equipe" src="./imgs/Equipe análise.png">
+
+    <div ng-cloak>
+        <p class="text-center successMessage">
+            {{successMessage}}
+        </p>
+    </div>
+
+    <div ng-cloak>
+        <p class="text-center errorMessage">
+            {{errorMessage}}
+        </p>
+    </div>
+
+    <!-- Frameworks -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        jQuery(function ($) {
+            $("input#name").get(0).focus();
+        });
+
+        function somenteNumeros(num) {
+            var er = /[^0-9]/;
+            er.lastIndex = 0;
+            var campo = num;
+            if (er.test(campo.value)) {
+                campo.value = "";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
